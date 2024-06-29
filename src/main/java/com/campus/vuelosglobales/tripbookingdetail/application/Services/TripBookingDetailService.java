@@ -31,4 +31,8 @@ public class TripBookingDetailService {
     public void deleteById(Long id) {
         tripBookingDetailRepository.deleteById(id);
     }
+
+    public void delete(TripBookingDetail tripBookingDetail) {
+        tripBookingDetailRepository.delete(tripBookingDetail);
+    }
 }

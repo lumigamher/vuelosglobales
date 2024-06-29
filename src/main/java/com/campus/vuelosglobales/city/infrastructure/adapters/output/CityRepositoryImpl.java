@@ -3,9 +3,12 @@ package com.campus.vuelosglobales.city.infrastructure.adapters.output;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.stereotype.Repository;
+
 import com.campus.vuelosglobales.city.domain.entities.City;
 import com.campus.vuelosglobales.city.domain.repositories.CityRepository;
 
+@Repository
 public class CityRepositoryImpl implements CityRepository{
 
     private final CityPersistenceAdapter cityPersistenceAdapter;

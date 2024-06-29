@@ -36,4 +36,9 @@ public class TripBookingDetailRepositoryImpl implements TripBookingDetailReposit
     public void deleteById(Long id) {
         tripBookingDetailPersistenceAdapter.deleteById(id);
     }
+
+    @Override
+    public void delete(TripBookingDetail tripBookingDetail) {
+        tripBookingDetailPersistenceAdapter.delete(tripBookingDetail);
+    }
 }

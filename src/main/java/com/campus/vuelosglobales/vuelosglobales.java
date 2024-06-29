@@ -6,8 +6,24 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import com.campus.vuelosglobales.plane.application.PlaneMenuHandler;
+import com.campus.vuelosglobales.trip.application.TripMenuHandler;
+import com.campus.vuelosglobales.tripcrew.application.TripCrewMenuHandler;
+
 @SpringBootApplication
 public class vuelosglobales implements CommandLineRunner {
+
+    private final PlaneMenuHandler planeMenuHandler;
+    private final TripCrewMenuHandler tripCrewMenuHandler;
+    private final TripMenuHandler tripMenuHandler;
+
+    public vuelosglobales(PlaneMenuHandler planeMenuHandler, TripCrewMenuHandler tripCrewMenuHandler,
+            TripMenuHandler tripMenuHandler) {
+        this.planeMenuHandler = planeMenuHandler;
+        this.tripCrewMenuHandler = tripCrewMenuHandler;
+        this.tripMenuHandler = tripMenuHandler;
+    }
+
     public static void main(String[] args) {
         SpringApplication.run(vuelosglobales.class, args);
     }
@@ -15,85 +31,204 @@ public class vuelosglobales implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         Scanner scanner = new Scanner(System.in);
-        int opcionPrincipal, opcionSubMenu;
+        int opcionPrincipal = -1, opcionSubMenu = -1;
 
-        do{
-            mostrarMenuPrincipal();
-            opcionPrincipal = scanner.nextInt();
-            scanner.nextLine();
+        while (true) {
+            try {
+                mostrarMenuPrincipal();
+                if (scanner.hasNextInt()) {
+                    opcionPrincipal = scanner.nextInt();
+                    scanner.nextLine(); // Consumir nueva línea
+                } else {
+                    System.out.println("Por favor, ingrese un número válido.");
+                    scanner.next(); // Descartar entrada no válida
+                    continue;
+                }
 
-            switch (opcionPrincipal) {
-                case 1:
-                    mostrarSubMenuAviones();
-                    opcionSubMenu = scanner.nextInt();
-                    scanner.nextLine();
-                    manejarOpcionSubmenuAviones(opcionSubMenu);
-                    break;
-                case 2:
-                    mostrarSubMenuTripulacion();
-                    opcionSubMenu = scanner.nextInt();
-                    scanner.nextLine();
-                    manejarOpcionSubmenuTripulacion(opcionSubMenu);
-                    break;
-                case 3:
-                    mostrarSubMenuRutasyEscalas();
-                    opcionSubMenu = scanner.nextInt();
-                    scanner.nextLine();
-                    manejarOpcionSubmenuRutasyEscalas(opcionSubMenu);
-                    break;
-                case 4:
-                    mostrarSubMenuAeropuertos();
-                    opcionSubMenu = scanner.nextInt();
-                    scanner.nextLine();
-                    manejarOpcionSubmenuAeropuertos(opcionSubMenu);
-                    break;
-                case 5:
-                    mostrarSubMenuReservas();
-                    opcionSubMenu = scanner.nextInt();
-                    scanner.nextLine();
-                    manejarOpcionSubmenuReservas(opcionSubMenu);
-                    break;
-                case 6:
-                    mostrarSubMenuClientes();
-                    opcionSubMenu = scanner.nextInt();
-                    scanner.nextLine();
-                    manejarOpcionSubmenuClientes(opcionSubMenu);
-                    break;
-                case 7:
-                    mostrarSubMenuTarifas();
-                    opcionSubMenu = scanner.nextInt();
-                    scanner.nextLine();
-                    manejarOpcionSubmenuTarifas(opcionSubMenu);
-                    break;
-                case 8:
-                    mostrarSubMenuDocumentos();
-                    opcionSubMenu = scanner.nextInt();
-                    scanner.nextLine();
-                    manejarOpcionSubmenuDocumentos(opcionSubMenu);
-                    break;
-                case 9:
-                    mostrarSubMenuBuscaryReservarVuelos();
-                    opcionSubMenu = scanner.nextInt();
-                    scanner.nextLine();
-                    manejarOpcionSubmenuBuscaryReservarVuelos(opcionSubMenu);
-                    break;
-                case 10:
-                    mostrarSubMenuConsultas();
-                    opcionSubMenu = scanner.nextInt();
-                    scanner.nextLine();
-                    manejarOpcionSubMenuCosultas(opcionSubMenu);
-                    break;
-                case 0:
-                    System.out.println("Saliendo...");
-                    break;
-                default:
-                    System.out.println("Opción inválida. Por favor, seleccione una opción válida.");              
+                switch (opcionPrincipal) {
+                    case 1:
+                        mostrarSubMenuAviones();
+                        if (scanner.hasNextInt()) {
+                            opcionSubMenu = scanner.nextInt();
+                            scanner.nextLine(); // Consumir nueva línea
+                        } else {
+                            System.out.println("Por favor, ingrese un número válido.");
+                            scanner.next(); // Descartar entrada no válida
+                            continue;
+                        }
+                        planeMenuHandler.manejarOpcionSubmenuAviones(opcionSubMenu);
+                        break;
+                    case 2:
+                        mostrarSubMenuTripulacion();
+                        if (scanner.hasNextInt()) {
+                            opcionSubMenu = scanner.nextInt();
+                            scanner.nextLine(); // Consumir nueva línea
+                        } else {
+                            System.out.println("Por favor, ingrese un número válido.");
+                            scanner.next(); // Descartar entrada no válida
+                            continue;
+                        }
+                        tripCrewMenuHandler.manejarOpcionSubmenuTripulacion(opcionSubMenu);
+                        break;
+                    case 3:
+                        mostrarSubMenuRutasyEscalas();
+                        if (scanner.hasNextInt()) {
+                            opcionSubMenu = scanner.nextInt();
+                            scanner.nextLine(); // Consumir nueva línea
+                        } else {
+                            System.out.println("Por favor, ingrese un número válido.");
+                            scanner.next(); // Descartar entrada no válida
+                            continue;
+                        }
+                        tripMenuHandler.manejarOpcionSubmenuRutasyEscalas(opcionSubMenu);
+                        break;
+                    case 4:
+                        mostrarSubMenuAeropuertos();
+                        if (scanner.hasNextInt()) {
+                            opcionSubMenu = scanner.nextInt();
+                            scanner.nextLine(); // Consumir nueva línea
+                        } else {
+                            System.out.println("Por favor, ingrese un número válido.");
+                            scanner.next(); // Descartar entrada no válida
+                            continue;
+                        }
+                        manejarOpcionSubmenuAeropuertos(opcionSubMenu);
+                        break;
+                    case 5:
+                        mostrarSubMenuReservas();
+                        if (scanner.hasNextInt()) {
+                            opcionSubMenu = scanner.nextInt();
+                            scanner.nextLine(); // Consumir nueva línea
+                        } else {
+                            System.out.println("Por favor, ingrese un número válido.");
+                            scanner.next(); // Descartar entrada no válida
+                            continue;
+                        }
+                        manejarOpcionSubmenuReservas(opcionSubMenu);
+                        break;
+                    case 6:
+                        mostrarSubMenuClientes();
+                        if (scanner.hasNextInt()) {
+                            opcionSubMenu = scanner.nextInt();
+                            scanner.nextLine(); // Consumir nueva línea
+                        } else {
+                            System.out.println("Por favor, ingrese un número válido.");
+                            scanner.next(); // Descartar entrada no válida
+                            continue;
+                        }
+                        manejarOpcionSubmenuClientes(opcionSubMenu);
+                        break;
+                    case 7:
+                        mostrarSubMenuTarifas();
+                        if (scanner.hasNextInt()) {
+                            opcionSubMenu = scanner.nextInt();
+                            scanner.nextLine(); // Consumir nueva línea
+                        } else {
+                            System.out.println("Por favor, ingrese un número válido.");
+                            scanner.next(); // Descartar entrada no válida
+                            continue;
+                        }
+                        manejarOpcionSubmenuTarifas(opcionSubMenu);
+                        break;
+                    case 8:
+                        mostrarSubMenuDocumentos();
+                        if (scanner.hasNextInt()) {
+                            opcionSubMenu = scanner.nextInt();
+                            scanner.nextLine(); // Consumir nueva línea
+                        } else {
+                            System.out.println("Por favor, ingrese un número válido.");
+                            scanner.next(); // Descartar entrada no válida
+                            continue;
+                        }
+                        manejarOpcionSubmenuDocumentos(opcionSubMenu);
+                        break;
+                    case 9:
+                        mostrarSubMenuBuscaryReservarVuelos();
+                        if (scanner.hasNextInt()) {
+                            opcionSubMenu = scanner.nextInt();
+                            scanner.nextLine(); // Consumir nueva línea
+                        } else {
+                            System.out.println("Por favor, ingrese un número válido.");
+                            scanner.next(); // Descartar entrada no válida
+                            continue;
+                        }
+                        manejarOpcionSubmenuBuscaryReservarVuelos(opcionSubMenu);
+                        break;
+                    case 10:
+                        mostrarSubMenuConsultas();
+                        if (scanner.hasNextInt()) {
+                            opcionSubMenu = scanner.nextInt();
+                            scanner.nextLine(); // Consumir nueva línea
+                        } else {
+                            System.out.println("Por favor, ingrese un número válido.");
+                            scanner.next(); // Descartar entrada no válida
+                            continue;
+                        }
+                        manejarOpcionSubMenuCosultas(opcionSubMenu);
+                        break;
+                    case 11:
+                        mostrarSubMenuVuelos();
+                        if (scanner.hasNextInt()) {
+                            opcionSubMenu = scanner.nextInt();
+                            scanner.nextLine(); // Consumir nueva línea
+                        } else {
+                            System.out.println("Por favor, ingrese un número válido.");
+                            scanner.next(); // Descartar entrada no válida
+                            continue;
+                        }
+                        manejarOpcionSubmenuVuelos(opcionSubMenu);
+                        break;
+                    case 0:
+                        System.out.println("Saliendo...");
+                        scanner.close();
+                        return;
+                    default:
+                        System.out.println("Opción inválida. Por favor, seleccione una opción válida.");
+                }
+            } catch (Exception e) {
+                System.out.println("Ha ocurrido un error: " + e.getMessage());
             }
-
-        } while (opcionPrincipal != 11);
-        scanner.close();
+        }
+    }
+    private void manejarOpcionSubmenuVuelos(int opcionSubMenu) {
+        switch (opcionSubMenu) {
+            case 1:
+                // Lógica para crear vuelo
+                break;
+            case 2:
+                // Lógica para consultar vuelo
+                break;
+            case 3:
+                // Lógica para actualizar vuelo
+                break;
+            case 4:
+                // Lógica para eliminar vuelo
+                break;
+            case 0:
+                // Volver al menú principal
+                break;
+            default:
+                System.out.println("Opción inválida. Por favor, seleccione una opción válida.");
+        } 
     }
 
+    private static void mostrarSubMenuVuelos() {
+        System.out.println("\n=====================================");
+        System.out.println("           GESTIÓN DE VUELOS         ");
+        System.out.println("=====================================");
+        System.out.println("1. Crear Vuelo");
+        System.out.println("-------------------------------------");
+        System.out.println("2. Consultar Vuelo");
+        System.out.println("-------------------------------------");
+        System.out.println("3. Actualizar Vuelo");
+        System.out.println("-------------------------------------");
+        System.out.println("4. Eliminar Vuelo");
+        System.out.println("-------------------------------------");
+        System.out.println("0. Volver al Menú Principal");
+        System.out.println("=====================================");
+        System.out.print("Seleccione una opción: ");
+    }
+    
     private void manejarOpcionSubMenuCosultas(int opcionSubMenu) {
         switch (opcionSubMenu) {
             case 1:
@@ -329,6 +464,7 @@ public class vuelosglobales implements CommandLineRunner {
     }
 
     private void manejarOpcionSubmenuAeropuertos(int opcionSubMenu) {
+        
         switch (opcionSubMenu) {
             case 1:
                 //Registrar Aeropuerto
@@ -367,39 +503,6 @@ public class vuelosglobales implements CommandLineRunner {
         System.out.print("Seleccione una opción: ");
     }
     
-
-    private void manejarOpcionSubmenuRutasyEscalas(int opcionSubMenu) {
-        switch (opcionSubMenu) {
-            case 1:
-                //Asignar Aeronave a Trayecto
-                break;
-            case 2:
-                //Actualizar Información de Trayecto
-                break;
-            case 3:
-                //Eliminar Trayecto;
-                break;
-            case 4:
-                //Consultar Información de Trayecto
-                break;
-            case 5:
-                //Consultar Escalas de un Trayecto
-                break;
-            case 6:
-                //actualizar informacion de revision
-                break;
-            case 7:
-                //Eliminar Escala
-                break;
-            case 0:
-                //Volver al menu principal
-                break;
-        
-            default:
-                System.out.println("Opción inválida. Por favor, seleccione una opción válida.");
-        } 
-    }
-
     private static void mostrarSubMenuRutasyEscalas() {
         System.out.println("\n=====================================");
         System.out.println("     GESTIÓN DE RUTAS Y ESCALAS      ");
@@ -423,23 +526,6 @@ public class vuelosglobales implements CommandLineRunner {
         System.out.print("Seleccione una opción: ");
     }
     
-
-    private void manejarOpcionSubmenuTripulacion(int opcionSubMenu) {
-        switch (opcionSubMenu) {
-            case 1:
-                //logica para registrar avion 
-                break;
-            case 2:
-                //Actualizar informcaion del avion 
-                break;
-            case 0:
-                //Volver al menu principal
-                break;
-            default:
-                System.out.println("Opción inválida. Por favor, seleccione una opción válida.");
-        } 
-    }
-
     private void mostrarSubMenuTripulacion() {
         System.out.println("\n=============================================");
         System.out.println("            GESTIÓN DE TRIPULACIÓN           ");
@@ -451,42 +537,6 @@ public class vuelosglobales implements CommandLineRunner {
         System.out.println("0. Volver al Menú Principal");
         System.out.println("=============================================");
         System.out.print("Seleccione una opción: ");
-    }
-
-    private void manejarOpcionSubmenuAviones(int opcionSubMenu) {
-        
-        switch (opcionSubMenu) {
-            case 1:
-                //logica para registrar avion 
-                break;
-            case 2:
-                //Actualizar informcaion del avion 
-                break;
-            case 3:
-                //Eliminar Avion;
-                break;
-            case 4:
-                //consultar informacion del avion
-                break;
-            case 5:
-                //registrar revision de mantenimiento
-                break;
-            case 6:
-                //actualizar informacion de revision
-                break;
-            case 7:
-                //eliminar revision de mantenimiento 
-                break;
-            case 8:
-                //Consultar historial de revisiones del avion 
-                break;
-            case 0:
-                //Volver al menu principal
-                break;
-        
-            default:
-                System.out.println("Opción inválida. Por favor, seleccione una opción válida.");
-        } 
     }
 
     private void mostrarSubMenuAviones() {
@@ -512,7 +562,6 @@ public class vuelosglobales implements CommandLineRunner {
         System.out.println("0. Volver al Menú Principal");
         System.out.println("=============================================");
         System.out.print("Seleccione una opción: ");
-
     }
 
     private static void mostrarMenuPrincipal() {
@@ -539,10 +588,13 @@ public class vuelosglobales implements CommandLineRunner {
         System.out.println("--------------------------------------");
         System.out.println("10. Consultas");
         System.out.println("--------------------------------------");
+        System.out.println("11. Gestión de Vuelos");
+        System.out.println("--------------------------------------");
         System.out.println("0. Salir");
         System.out.println("======================================");
         System.out.print("Seleccione una opción: ");
     }
+    
     
 
 }

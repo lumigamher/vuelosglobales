@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.campus.vuelosglobales.trip.domain.entities.Trip;
 import com.campus.vuelosglobales.tripbooking.domain.entities.TripBooking;
 import com.campus.vuelosglobales.tripbooking.domain.repositories.TripBookingRepository;
 
@@ -30,5 +31,9 @@ public class TripBookingService {
 
     public void deleteById(Long id) {
         tripBookingRepository.deleteById(id);
+    }
+
+    public List<TripBooking> findByTrip(Trip trip) {
+        return tripBookingRepository.findByTrip(trip);
     }
 }

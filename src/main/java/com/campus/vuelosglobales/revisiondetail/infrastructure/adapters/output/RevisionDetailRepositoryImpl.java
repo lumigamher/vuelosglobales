@@ -36,4 +36,9 @@ public class RevisionDetailRepositoryImpl implements RevisionDetailRepository {
     public void deleteById(Long id) {
         revisionDetailPersistenceAdapter.deleteById(id);
     }
+
+    @Override
+    public List<RevisionDetail> findByRevision_Id(Long id) {
+        return revisionDetailPersistenceAdapter.findByRevision_Id(id);
+    }
 }

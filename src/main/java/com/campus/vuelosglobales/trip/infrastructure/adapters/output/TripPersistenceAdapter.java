@@ -7,4 +7,5 @@ import com.campus.vuelosglobales.trip.domain.entities.Trip;
 
 @Repository
 public interface TripPersistenceAdapter extends JpaRepository<Trip, Long> {
+    
 }

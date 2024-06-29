@@ -3,9 +3,12 @@ package com.campus.vuelosglobales.airport.infrastructure.adapters.output;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.stereotype.Repository;
+
 import com.campus.vuelosglobales.airport.domain.entities.Airport;
 import com.campus.vuelosglobales.airport.domain.repositories.AirportRepository;
 
+@Repository
 public class AirportRepositoryImpl implements AirportRepository {
 
     private final AirportPersistenceAdapter airportPersistenceAdapter;

@@ -36,4 +36,6 @@ public class FlightConnectionRepositoryImpl implements FlightConnectionRepositor
     public void deleteById(Long id) {
         flightConnectionPersistenceAdapter.deleteById(id);
     }
+
+    
 }

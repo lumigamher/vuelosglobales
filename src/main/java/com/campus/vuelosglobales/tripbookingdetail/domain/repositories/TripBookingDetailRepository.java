@@ -10,4 +10,5 @@ public interface TripBookingDetailRepository {
     Optional<TripBookingDetail> findById(Long id);
     TripBookingDetail save(TripBookingDetail tripBookingDetail);
     void deleteById(Long id);
+    void delete(TripBookingDetail tripBookingDetail);
 }

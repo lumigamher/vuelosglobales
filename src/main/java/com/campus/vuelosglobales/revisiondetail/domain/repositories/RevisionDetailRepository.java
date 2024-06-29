@@ -10,4 +10,5 @@ public interface RevisionDetailRepository {
     Optional<RevisionDetail> findById(Long id);
     RevisionDetail save(RevisionDetail revisionDetail);
     void deleteById(Long id);
+    List<RevisionDetail> findByRevision_Id(Long revisionId);
 }

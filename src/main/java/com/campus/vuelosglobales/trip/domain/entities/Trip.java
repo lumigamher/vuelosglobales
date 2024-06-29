@@ -2,7 +2,7 @@ package com.campus.vuelosglobales.trip.domain.entities;
 
 import java.util.Date;
 
-import com.campus.vuelosglobales.employee.domain.entities.Employee;
+import com.campus.vuelosglobales.plane.domain.entities.Plane;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -14,7 +14,7 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Trip {
+public class Trip {    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -27,7 +27,8 @@ public class Trip {
     @Column(name = "price_trip")
     private Double price_trip;
 
-    @ManyToOne
-    @JoinColumn(name = "employee_id", referencedColumnName = "id")
-    private Employee employee;
+    @ManyToOne 
+    @JoinColumn(name = "plane_id", referencedColumnName = "id") 
+    private Plane plane;
+
 }

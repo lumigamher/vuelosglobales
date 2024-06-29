@@ -46,7 +46,7 @@ public class PlaneController {
     }
 
     @DeleteMapping("/{id}")
-    public void deletePlane(@PathVariable Long id) {
+    public void deletePlane(@PathVariable Long id) throws Exception {
         planeService.deleteById(id);
     }
 }

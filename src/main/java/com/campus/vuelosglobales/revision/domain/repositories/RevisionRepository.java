@@ -9,4 +9,6 @@ public interface RevisionRepository {
     Optional<Revision> findById(Long id);
     Revision save(Revision revision);
     void deleteById(Long id);
+    List<Revision> findByPlane_Id(Long planeId);
+    boolean existsById(Long id);
 }

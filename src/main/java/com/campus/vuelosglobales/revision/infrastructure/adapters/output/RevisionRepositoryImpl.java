@@ -33,4 +33,14 @@ public class RevisionRepositoryImpl implements RevisionRepository {
     public void deleteById(Long id) {
         revisionPersistenceAdapter.deleteById(id);
     }
-}
+
+    @Override
+    public List<Revision> findByPlane_Id(Long id) {
+        return revisionPersistenceAdapter.findByPlane_Id(id);
+    }
+
+    @Override
+    public boolean existsById(Long id) {
+        return revisionPersistenceAdapter.existsById(id);
+    }
+} 

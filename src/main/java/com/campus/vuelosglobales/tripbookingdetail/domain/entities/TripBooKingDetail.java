@@ -1,6 +1,6 @@
 package com.campus.vuelosglobales.tripbookingdetail.domain.entities;
 
-import java.sql.Date;
+import java.util.Date;
 
 import com.campus.vuelosglobales.customer.domain.entities.Customer;
 import com.campus.vuelosglobales.flightfare.domain.entities.FlightFare;

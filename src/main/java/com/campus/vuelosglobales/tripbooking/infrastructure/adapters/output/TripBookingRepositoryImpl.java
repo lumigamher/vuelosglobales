@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Component;
 
+import com.campus.vuelosglobales.trip.domain.entities.Trip;
 import com.campus.vuelosglobales.tripbooking.domain.entities.TripBooking;
 import com.campus.vuelosglobales.tripbooking.domain.repositories.TripBookingRepository;
 
@@ -35,5 +36,10 @@ public class TripBookingRepositoryImpl implements TripBookingRepository {
     @Override
     public void deleteById(Long id) {
         tripBookingPersistenceAdapter.deleteById(id);
+    }
+
+    @Override
+    public List<TripBooking> findByTrip(Trip trip) {
+        return tripBookingPersistenceAdapter.findByTrip(trip);
     }
 }

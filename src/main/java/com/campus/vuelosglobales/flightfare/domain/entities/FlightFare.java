@@ -24,4 +24,9 @@ public class FlightFare {
 
     @Column(name = "value", nullable = false)
     private double value;
+
+    public Object getFareName() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getFareName'");
+    }
 }

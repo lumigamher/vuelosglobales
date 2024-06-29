@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.campus.vuelosglobales.airport.domain.entities.Airport;
 
 @Repository
-public interface AirportPersistenceAdapter extends JpaRepository<Airport, Long>{
+public interface AirportPersistenceAdapter extends JpaRepository<Airport, Long> {
 
 }

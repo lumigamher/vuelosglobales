@@ -31,4 +31,9 @@ public class RevisionDetailService {
     public void deleteById(Long id) {
         revisionDetailRepository.deleteById(id);
     }
+
+    public List<RevisionDetail> findByRevision_Id(Long revisionId) {
+        return revisionDetailRepository.findByRevision_Id(revisionId);
+    }
+
 }
